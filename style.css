@@ -1,0 +1,216 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    /*box-sizing: é a medida da borda ;*/
+}
+
+:root{
+    --text-color: white;
+    --bg-url: url(./assets/bg-dark\ .jpg);
+    --stroke-color: rgba( 255 , 255 , 255 , 0.5 );
+    --surface-color: rgba( 255 , 255 , 255 , 0.05 );
+    --surface-color-hover: rgba( 0 , 0 , 0 , 0.02 );
+    --highlight-color: rgba( 255 , 255 , 255 , 0.2 );
+    --switch-bg-url: url(./assets/butao.svg);
+}
+
+.light{
+    --text-color: black;
+    --bg-url: url(./assets/bg-light\ .jpg) ;
+    --stroke-color: rgba(0 , 0 , 0 , 0.5);  
+    --surface-color: rgba(0 , 0 , 0 , 0.1);
+    --surface-color-hover: rgba(255, 255, 255, 0.05);
+    --highlight-color: rgba( 0 , 0 , 0 , 0.1 );
+    --switch-bg-url: url(./assets/sun.svg);
+
+}
+
+body{/*
+    background:url("./assets/moblile-dark.jpg"); 
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: cover
+    */
+    background: var(--bg-url) no-repeat top center/cover;
+    height: 100vh;
+}
+
+body *{
+    font-family: 'Inter',sans-serif;
+    color: var(--text-color);
+}
+
+#container { 
+    width: 100%;
+    max-width: 588px;
+    margin:56px auto 0 auto;
+    padding: 0 24px;
+}
+
+#profile{
+    text-align: center;
+    padding: 24px;
+}
+
+#profile p {
+    font-weight: 500;
+    line-height: 24px;
+    margin-top: 8px;
+}
+
+#profile img {
+    width: 112px;
+    border-radius: 50%;
+
+    border: 3px solid transparent;
+    background: #c4c4cc
+   /* display: block ;
+    margin: auto; duas formas para deixar centralizado oq vc quiser c
+    colocar eu por exemplo optei em mandar o pai de img que é o profile centralizar para mim*/
+    
+} 
+#switch{
+    position: relative;
+    width: 64px;
+    
+    margin: 4px auto;
+}
+
+#switch button {
+    width: 32px;
+    height: 32px;
+    background: white var(--switch-bg-url) no-repeat center;
+    border: 0 ;
+    border-radius: 50%;
+    
+    position: absolute;
+    top: 50%;
+    left: 0;
+    z-index: 1;
+    transform: translateY(-50%);
+
+    animation: slide-back 0.2s;
+}
+/*para o botão mudar de lado mais um comando anterior 
+esta em outro lado como posso ver nesse codigo basta colocar "initial"*/
+.light #switch button{
+  animation: slide-in 0.2s forwards; /* forwards é para manter a propriedade que fiz no slide in*/
+  
+    /* irei mudar para colocar uma transição melhor na hr que clicar com mouse 
+  mais se eu não quisesse eu poderia colocar esse mesmo codigo right: 0;
+    left: initial; */
+}
+
+#switch button:hover{
+    outline: 8px solid var(--highlight-color);
+}
+
+
+
+
+
+
+/* o span é inline então pode funcionar
+width e height coloque o display block */
+#switch span {
+    display: block;
+    width: 64px;
+    height: 24px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    backdrop-filter: blur(4px);
+    border-radius: 9999px;
+}
+ul {
+ list-style: none;
+ display: flex;
+ flex-direction: column;
+ gap: 16px;
+
+ padding: 24px 0;
+ 
+}
+
+ul li a {
+    
+    display: flex;
+    justify-content: center;
+    align-items: center ;
+    height: 52px;
+
+    padding: 16px 24px;
+    background: var(--surface-color);
+    border: 1px solid var(--stroke-color);
+    border-radius: 8px;
+
+    backdrop-filter: blur(4px);
+
+    text-decoration: none;
+    font-weight: 500;
+
+    transition: background 0.2s;
+
+}
+
+/* pseudo selector faz q passe o mouse encima 
+da uma vida para o container digamos assim */
+ul li a:hover { 
+    background: var(--surface-color-hover);
+    border: 1.5px solid var(--text-color);
+}
+
+#social-link{
+    display: flex;
+    justify-content: center;
+    
+    padding: 24px 0;
+    font-size: 24px;
+}
+
+#social-link a{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 16px;
+
+    transition: background 0.2s;
+    border-radius: 50%;
+}
+
+#social-link a:hover{
+    background: var(--highlight-color);
+    
+}
+
+footer{
+   text-align: center;
+   padding: 24px 0;
+   font-size: 14px;
+}
+
+@media (min-width: 700px ) {
+    :root {
+        --bg-url: url(./assets/moblile-dark.jpg);
+    }
+    .light {
+        --bg-url: url(./assets/mobile-light\ .jpg) ;
+    }
+}
+/*animação (esse slide in é uma animação de entrada)*/
+@keyframes slide-in{
+    from {
+        left: 0;
+    }
+    to{
+        left: 50%;
+    }
+}
+@keyframes slide-back{
+    from{
+        left: 50%;
+    }
+    to{
+        left: 0;
+    }
+}
